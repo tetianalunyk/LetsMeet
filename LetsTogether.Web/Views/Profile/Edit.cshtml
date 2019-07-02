@@ -1,0 +1,44 @@
+﻿@model LetsTogether.Web.Models.EditProfileModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<script type="text/javascript" src="~/js/city_state.js"></script>
+<link href="~/css/CheckBox.css" rel="stylesheet" />
+<h2>Edit</h2>
+
+<h4>EditProfileModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Birthday" class="control-label"></label>
+                <input asp-for="Birthday" class="form-control" />
+                <span asp-validation-for="Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <select onchange="set_country(this,country,city_state)" size="1" name="region">
+                    <option value="" selected="selected">SELECT REGION</option>
+                    <option value=""></option>
+                    <script type="text/javascript">
+                        setRegions(this);
+                    </script>
+                </select>
+                Country <select name="country" size="1" disabled="disabled" onchange="set_city_state(this,city_state)"></select>
+                City/State <select name="city_state" size="1" disabled="disabled" onchange="print_city_state(country,this)"></select>
+            </div>
+            <link href="~/css/CheckBox.css" rel="stylesheet" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

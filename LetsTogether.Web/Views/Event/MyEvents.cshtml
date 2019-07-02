@@ -1,0 +1,55 @@
+﻿@using LetsTogether.BLL.DTO
+@model List<MyEventsModel>
+@{
+    ViewData["Title"] = "MyEvents";
+}
+
+
+<link href="~/css/EventBox.css" rel="stylesheet" />
+
+<center>
+    @foreach (var item in Model)
+    {
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="item-box-blog">
+                            <div class="item-box-blog-image">
+                                <!--Date-->
+                                <div class="item-box-blog-date bg-blue-ui white"> <span class="mon">@item.DateFrom.ToShortDateString() - @item.DateTo.ToShortDateString()</span> </div>
+                                <!--Image-->
+                                <figure> <img src="@item.url"> </figure>
+                            </div>
+                            <div class="item-box-blog-body">
+                                <!--Heading-->
+                                <div class="item-box-blog-heading">
+                                    <a href="#" tabindex="0">
+                                        <h5>@item.Title</h5>
+                                    </a>
+                                </div>
+                                <!--Data-->
+                                <div class="item-box-blog-data" style="padding: px 15px;">
+                                    <p><i class="fa fa-user-o"></i> @item.country, @item.city_state</p>
+                                </div>
+                                <!--Text-->
+                                <div class="item-box-blog-text">
+                                    <p>@item.Description</p>
+                                </div>
+                                @foreach (var x in item.Categories)
+                                {
+                                    <span>
+                                        #@x &nbsp;
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+</center>

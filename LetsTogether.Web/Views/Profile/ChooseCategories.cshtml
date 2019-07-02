@@ -1,0 +1,19 @@
+﻿@using LetsTogether.Web.Models
+@model ChooseCategoryModel
+@{
+    ViewData["Title"] = "ChooseCategories";
+}
+
+@using (Html.BeginForm("ChooseCategories", "Profile"))
+{
+    <ul class="ks-cboxtags">
+        @foreach (var item in Model.Categories)
+        {
+            <li>
+                <input name="SelectedCategories" type="checkbox" id="@item.Id" @if (Model.SelectedCategories.Contains(item.Name)) { <text> checked</text> } value="@item.Name">
+                <label for="@item.Id">@item.Name</label>
+            </li>
+        }
+    </ul>
+    <input type="submit" name="Submit" value="Choose" />
+}

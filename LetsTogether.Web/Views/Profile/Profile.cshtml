@@ -1,0 +1,97 @@
+﻿@using LetsTogether.BLL.DTO
+@model ProfileDTO
+
+@{
+    ViewData["Title"] = "Profile";
+}
+<link rel="stylesheet" type="text/css" href="~/css/Profile.css">
+<!------ Include the above in your HEAD tag ---------->
+<body>
+    <div class="container emp-profile">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <p><img src="@Model.GetUser.Profile.Avatar.Url"></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5>
+                        @Model.GetUser.UserName
+                    </h5>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>@Model.GetUser.UserName</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>@Model.GetUser.Email</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Phone</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>@Model.GetUser.PhoneNumber</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Date od Birth</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>@Model.GetUser.Profile.Birthday.ToShortDateString()</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <br />
+                    <form asp-action="AddPhoto" asp-controller="Profile" method="post" enctype="multipart/form-data">
+                        <input type="file" class="profile-edit-btn" name="uploadedFile" /><br>
+                        <input type="submit" class="profile-edit-btn" value="Download" />
+                    </form>
+                    <br />
+                    <div class="mybuttons">
+                        @Html.ActionLink("Edit", "Edit", "Profile", new { id = Model.GetUser.Id })
+                    </div>
+
+                    <div class="mybuttons">
+                        @Html.ActionLink("Category", "ChooseCategories", "Profile", new { id = Model.GetUser.Id })
+                    </div>
+
+                    <div class="mybuttons">
+                        @Html.ActionLink("Create Event", "AddEvent", "Event")
+                    </div>
+
+                    <div class="mybuttons">
+                        @Html.ActionLink("My Events", "MyEvents", "Event", new { id = Model.GetUser.Id })
+                    </div>
+
+                    <div class="mybuttons">
+                        @Html.ActionLink("All Events", "AllEvents", "Event", new { id = Model.GetUser.Id })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>

@@ -1,0 +1,88 @@
+﻿@model LetsTogether.Web.Models.RegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<link href="~/css/Register.css" rel="stylesheet" />
+<script type="text/javascript" src="~/js/city_state.js"></script>
+
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+            <h3>Welcome</h3>
+            <p>You are 30 seconds away from meeting new people!</p>
+        </div>
+
+        <form asp-action="Register">
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <h3 class="register-heading">Registration</h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input asp-for="Login" class="form-control" placeholder="Login *" />
+                                <span asp-validation-for="Login" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Email" class="form-control" placeholder="Email *" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Password" class="form-control" placeholder="Password *" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password *" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="maxl">
+                                    <label class="radio inline">
+                                        <input asp-for="Sex" type="radio" name="sex" value="Male">Male
+                                    </label>
+                                    <label class="radio inline">
+                                        <input asp-for="Sex" type="radio" name="sex" value="Female">Female
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input asp-for="Phone" class="form-control" placeholder="Phone *" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Birthday" class="form-control" placeholder="Birthday *" />
+                                <span asp-validation-for="Birthday" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <select onchange="set_country(this,country,city_state)" size="1" name="region">
+                                    <option value="" selected="selected">SELECT REGION</option>
+                                    <option value=""></option>
+                                    <script type="text/javascript">
+                                        setRegions(this);
+                                    </script>
+                                </select>
+                                Country <select name="country" size="1" disabled="disabled" onchange="set_city_state(this,city_state)"></select>
+                                City/State <select name="city_state" size="1" disabled="disabled" onchange="print_city_state(country,this)"></select>
+                            </div>
+                            <input type="submit" class="btnRegister" value="Register" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+        
+
+
+

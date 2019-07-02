@@ -1,0 +1,70 @@
+﻿@model LetsTogether.Web.Models.EventModel
+
+@{
+    ViewData["Title"] = "AddEvent";
+}
+
+<script type="text/javascript" src="~/js/city_state.js"></script>
+
+<link href="~/css/CheckBox.css" rel="stylesheet" />
+<h2>AddEvent</h2>
+
+<h4>EventModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddEvent" asp-controller="Event" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="file" name="formFile" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" required class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateFrom" class="control-label"></label>
+                <input asp-for="DateFrom" value="" required class="form-control" />
+                <span asp-validation-for="DateFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateTo" class="control-label"></label>
+                <input asp-for="DateTo" value="" class="form-control" />
+                <span asp-validation-for="DateTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <select onchange="set_country(this,country,city_state)" size="1" name="region">
+                    <option value="" selected="selected">SELECT REGION</option>
+                    <option value=""></option>
+                    <script type="text/javascript">
+                        setRegions(this);
+                    </script>
+                </select>
+                Country <select name="country" size="1" disabled="disabled" onchange="set_city_state(this,city_state)"></select>
+                City/State <select name="city_state" size="1" disabled="disabled" onchange="print_city_state(country,this)"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            
+            <ul class="ks-cboxtags">
+                @foreach (var item in Model.Categories)
+                {
+                    <li>
+                        <input name="SelectedCategories" type="checkbox" id="@item.Id" @if (Model.SelectedCategories.Contains(item.Name)) { <text> checked</text> } value="@item.Name">
+                        <label for="@item.Id">@item.Name</label>
+                    </li>
+                }
+            </ul>
+
+            <div class="form-group">
+                <input type="submit" name="submit" value="Save" class="btn btn-default" />
+            </div>
+
+        </form>
+    </div>
+</div>
